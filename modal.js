@@ -48,6 +48,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Modal 4 (modal-cv)
+  const btnsCv = document.querySelectorAll(".btn-cv");
+  const modalsCv = document.querySelectorAll(".modal-cv");
+  const closeCvBtns = document.querySelectorAll(".close-cv");
+
+  btnsCv.forEach((btn, i) => {
+    btn.addEventListener("click", () => {
+      modalsCv[i].style.display = "block";
+    });
+  });
+
+  closeCvBtns.forEach((btn, i) => {
+    btn.addEventListener("click", () => {
+      modalsCv[i].style.display = "none";
+    });
+  });
+
+
   // Close modal when clicking outside modal content for all modals
   window.addEventListener("click", (event) => {
     // Modal 1
@@ -64,6 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Modal 3
     modalsCertificates.forEach((modal) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Modal 4
+    modalsCv.forEach((modal) => {
       if (event.target === modal) {
         modal.style.display = "none";
       }
