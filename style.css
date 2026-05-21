@@ -1,19 +1,30 @@
 :root {
-    --primaryTextColor: #1f2937;
-    /* Dark Gray for headings */
-    --secondaryTextColor: #4b5563;
-    /* Gray for paragraphs */
-    --borderColor: #e5e7eb;
-    /* Light gray borders */
+    --primaryTextColor: #0b1220;
+    /* hampir hitam biru → lebih premium dan tajam */
+
+    --secondaryTextColor: #52607a;
+    /* abu biru modern, lebih soft dari slate */
+
+    --borderColor: #e6eaf2;
+    /* border clean seperti SaaS dashboard */
+
     --primaryBackgroundColor: #ffffff;
-    --secondaryBackgroundColor: #f9fafb;
-    --thirdBackgroundColor: #f5f3fe;
-    --primaryIconColor: #7c3aed;
-    /* Modern purple */
-    --primaryIconColorHover: #6d28d9;
+
+    --secondaryBackgroundColor: #f6f8fc;
+    /* lebih modern bluish-white (UI feel 2026 SaaS) */
+
+    --thirdBackgroundColor: #eef2ff;
+    /* soft indigo tint (glow modern subtle) */
+
+    --primaryIconColor: #5b21b6;
+    /* deep royal purple (lebih premium look) */
+
+    --primaryIconColorHover: #7c3aed;
+    /* lebih hidup dan tetap elegant */
+
     --sectionPadding: 6rem;
-    /* jarak antar section lebih pas */
     --itemBorderRadius: 0.7rem;
+    /* Ukuran Section Padding dan Item Border Radius */
 }
 
 /* Jangan translate brand */
@@ -80,31 +91,90 @@ body {
 }
 
 body {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: var(--secondaryTextColor);
     background-color: var(--primaryBackgroundColor);
 }
 
-/* Scroll button */
+/* Scroll button - Premium */
 #scroll-btn {
     display: none;
     position: fixed;
-    bottom: 20px;
-    right: 30px;
+    bottom: 24px;
+    right: 24px;
     z-index: 99;
-    font-size: 18px;
-    border: none;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
     outline: none;
-    background-color: var(--primaryIconColor);
-    color: white;
     cursor: pointer;
-    padding: 15px 19px;
-    border-radius: 100px;
-    transition: all 0.2s ease;
+
+    background: linear-gradient(135deg,
+            var(--primaryIconColor),
+            var(--primaryIconColorHover));
+
+    color: white;
+    border-radius: 999px;
+
+    /* glass + depth */
+    box-shadow:
+        0 10px 30px rgba(91, 33, 182, 0.25),
+        0 2px 10px rgba(0, 0, 0, 0.08);
+
+    backdrop-filter: blur(10px);
+
+    transition: all 0.25s ease;
 }
 
+/* hover state - premium */
 #scroll-btn:hover {
-    background-color: var(--primaryIconColorHover);
+    transform: translateY(-4px) scale(1.08);
+    box-shadow:
+        0 18px 45px rgba(91, 33, 182, 0.35),
+        0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* active click feel */
+#scroll-btn:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* icon smoothing kalau pakai arrow */
+#scroll-btn svg,
+#scroll-btn i {
+    font-size: 18px;
+    transition: transform 0.2s ease;
+}
+
+#scroll-btn:hover svg,
+#scroll-btn:hover i {
+    transform: translateY(-1px);
+}
+
+/* soft glow aura */
+#scroll-btn::before {
+    content: "";
+    position: absolute;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle,
+            rgba(124, 58, 237, 0.35),
+            transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(12px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#scroll-btn:hover::before {
+    opacity: 1;
 }
 
 /* Headings */
@@ -143,7 +213,7 @@ a {
     padding-right: 1rem;
 }
 
-/* Buttons - modern corporate */
+/* Buttons - modern */
 .btn,
 .btn-cv,
 .btn-contact-me,
@@ -178,49 +248,99 @@ a {
 .modal-certificate {
     display: none;
     position: fixed;
-    z-index: 1;
-    padding-top: 100px;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+
+    /* glass dark overlay */
+    background: rgba(10, 15, 30, 0.55);
+    backdrop-filter: blur(10px);
+
+    justify-content: center;
+    align-items: center;
 }
 
+/* saat modal aktif (kalau pakai JS display block) */
+.modal[style*="display: block"],
+.modal-cv[style*="display: block"],
+.modal-certification[style*="display: block"],
+.modal-certificate[style*="display: block"] {
+    display: flex !important;
+}
+
+/* Modal Content */
 .modal-content,
 .modal-cv .modal-content,
 .modal-certification .modal-content,
 .modal-certificate .modal-content {
-    background-color: #fefefe;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 18px;
+
+    width: min(900px, 92%);
+    max-height: 90vh;
+
     margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 85%;
-    border-radius: 12px;
+    padding: 1.5rem;
+
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+
+    animation: modalPop 0.25s ease;
+    overflow: auto;
 }
 
+/* Animation */
+@keyframes modalPop {
+    from {
+        transform: scale(0.95) translateY(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Close Button (Modern Float) */
 .close,
 .close-cv,
 .close-certification,
 .close-certificate {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.06);
+
+    color: #111;
+    font-size: 20px;
+    font-weight: 600;
+
     cursor: pointer;
+    transition: all 0.25s ease;
 }
 
 .close:hover,
-.close:focus,
 .close-cv:hover,
-.close-cv:focus,
 .close-certification:hover,
-.close-certification:focus,
-.close-certificate:hover,
-.close-certificate:focus {
-    color: #000;
-    text-decoration: none;
+.close-certificate:hover {
+    background: rgba(91, 33, 182, 0.12);
+    color: var(--primaryIconColor);
+    transform: rotate(90deg);
 }
 
 /* Contact Links */
@@ -329,12 +449,15 @@ nav ul li a {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     padding: 5rem 0;
+    gap: 2rem;
 }
 
+/* Text Side */
 .hero-name {
     font-size: 3.2rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    letter-spacing: -0.03em;
 }
 
 .hero-name span {
@@ -344,14 +467,79 @@ nav ul li a {
 .hero-left-paragraph {
     flex: 1;
     min-width: 300px;
+    line-height: 1.7;
+}
+
+
+/* Hero Image (upgrade) */
+.hero-right {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* wrapper image biar ada depth */
+.hero-right img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    border-radius: 24px;
+
+    /* glass depth */
+    box-shadow:
+        0 30px 80px rgba(91, 33, 182, 0.18),
+        0 10px 30px rgba(0, 0, 0, 0.08);
+
+    transition: transform 0.5s ease, box-shadow 0.5s ease, filter 0.5s ease;
+
+    /* subtle feel */
+    transform: translateY(0);
+    filter: saturate(1.05) contrast(1.02);
+}
+
+/* hover premium feel */
+.hero-right img:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow:
+        0 40px 100px rgba(91, 33, 182, 0.25),
+        0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* floating glow background */
+.hero-right::before {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle,
+            rgba(91, 33, 182, 0.25),
+            transparent 70%);
+    filter: blur(20px);
+    z-index: -1;
+    border-radius: 50%;
+    animation: floatGlow 6s ease-in-out infinite;
+}
+
+/* animasi subtle float */
+@keyframes floatGlow {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 /* Portfolio / Projects */
 .portfolio {
     background-color: #ffffff;
-    border-radius: 16px;
+    border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--borderColor);
+    border: 5px solid var(--borderColor);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -412,110 +600,208 @@ nav ul li a {
     font-weight: 500;
 }
 
-/* Skills & Education & Experience */
-.skills-left,
-.skills-right {
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--borderColor);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+/* Section Layout (Modern Style) */
+#skills .grid-3-main {
+    grid-template-columns: 1.2fr 1fr 1fr;
+    align-items: start;
 }
 
+/* Skills - Floating Cloud Style */
 .skills-list {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
     margin-top: 1rem;
+    list-style: none;
 }
 
+/* tag cloud modern */
 .skills-list li {
-    background-color: #ede9fe;
-    color: #5b21b6;
-    padding: 0.4rem 0.8rem;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.9rem;
     border-radius: 999px;
+    background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+    color: #4c1d95;
     font-size: 0.85rem;
     font-weight: 500;
-    transition: all 0.2s ease;
-    cursor: default;
+    border: 1px solid #e6e0ff;
+    transition: all 0.25s ease;
 }
 
+/* hover float effect */
 .skills-list li:hover {
-    background-color: #d8b4fe;
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.03);
+    background: #e0e7ff;
 }
 
-#skills ul {
-    list-style: none;
-    padding-left: 0;
-    margin-left: 0;
+/* Education - Timeline Style */
+.skills-right {
+    position: relative;
 }
 
-.education-info h4 {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--primaryTextColor);
-    margin-bottom: 0.3rem;
+/* vertical line illusion */
+.skills-right::before {
+    content: "";
+    position: absolute;
+    left: 18px;
+    top: 60px;
+    bottom: 30px;
+    width: 2px;
+    background: linear-gradient(to bottom, #c7d2fe, transparent);
+    opacity: 0.6;
 }
 
-.education-info p {
-    font-size: 0.95rem;
-    color: var(--secondaryTextColor);
-    line-height: 1.5rem;
+/* setiap item education terasa "timeline card" */
+.education-info {
+    position: relative;
+    padding-left: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* bullet modern (dot kecil elegan) */
+.education-info::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    background: #7c3aed;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+}
+
+/* Card Container Feel */
+.skills-left,
+.skills-right {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid #e7ecf3;
+    border-radius: 18px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.skills-left:hover,
+.skills-right:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
 }
 
 /* Footer */
 footer {
-    padding: 6rem 0;
-    background: var(--secondaryBackgroundColor);
+    padding: 5rem 0;
+    background: linear-gradient(180deg, #f6f8fc 0%, #ffffff 100%);
     text-align: center;
+    border-top: 1px solid var(--borderColor);
 }
 
+/* wrapper icon jadi center full */
 .footer-icons {
-    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
+/* setiap icon dibuat seperti "button pill/circle" */
 .footer-icons a {
-    margin: 0 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid var(--borderColor);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+    transition: all 0.25s ease;
 }
 
+/* icon svg tetap clean */
 .footer-icons svg {
-    fill: #3e3f40;
+    width: 18px;
+    height: 18px;
+    fill: #64748b;
+    transition: all 0.25s ease;
+}
+
+/* hover modern (subtle lift) */
+.footer-icons a:hover {
+    transform: translateY(-3px);
+    border-color: rgba(91, 33, 182, 0.25);
+    box-shadow: 0 10px 25px rgba(91, 33, 182, 0.15);
 }
 
 .footer-icons a:hover svg {
     fill: var(--primaryIconColor);
 }
 
-/* Preloader */
+/* footer text kalau ada */
+footer p {
+    font-size: 0.9rem;
+    color: var(--secondaryTextColor);
+    margin-top: 1rem;
+}
+
+/* Preloader - clean modern upgrade */
+
 .preloader {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
+    inset: 0;
+    background: radial-gradient(circle at top, #ffffff 0%, #f6f8fc 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     color: #333;
-    font-family: "Inter", sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+
     z-index: 9999;
 }
 
+/* =========================
+   Spinner - Soft modern border style
+========================= */
+
 .spinner {
-    width: 60px;
-    height: 60px;
-    border: 6px solid #eee;
-    border-top: 6px solid var(--primaryIconColor);
+    width: 64px;
+    height: 64px;
+
     border-radius: 50%;
-    animation: spin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    margin-bottom: 15px;
+
+    /* lebih soft dari #eee */
+    border: 5px solid rgba(148, 163, 184, 0.2);
+
+    /* accent lebih premium */
+    border-top: 5px solid var(--primaryIconColor);
+
+    animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
+    margin-bottom: 16px;
+
+    /* subtle glow biar tidak flat */
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);
 }
+
+/* inner depth effect (biar tidak kosong) */
+.spinner::after {
+    content: "";
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1px solid rgba(124, 58, 237, 0.08);
+    top: 0;
+    left: 0;
+}
+
+/* Animation (tetap simple tapi lebih smooth) */
 
 @keyframes spin {
     0% {
@@ -589,6 +875,16 @@ footer {
 
     .hero-right {
         order: -1;
+    }
+
+    .hero-right img {
+        max-width: 320px;
+        border-radius: 20px;
+    }
+
+    .hero-right::before {
+        width: 200px;
+        height: 200px;
     }
 }
 
@@ -683,55 +979,173 @@ footer {
     opacity: 1;
 }
 
-/* Prev/Next buttons */
+/* Prev / Next Buttons */
+
 .prev,
 .next {
-    cursor: pointer;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: white;
-    font-weight: bold;
-    font-size: 2rem;
-    padding: 12px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
     user-select: none;
-    transition: background-color 0.3s ease;
+
+    border-radius: 999px;
+
+    /* dark glass */
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25),
+        0 2px 10px rgba(255, 255, 255, 0.04) inset;
+
+    transition:
+        all 0.25s ease;
 }
 
+/* hover */
 .prev:hover,
 .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.08);
+
+    background: linear-gradient(135deg,
+            var(--primaryIconColor),
+            var(--primaryIconColorHover));
+
+    border-color: rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 18px 40px rgba(91, 33, 182, 0.35);
 }
 
+/* click */
+.prev:active,
+.next:active {
+    transform: translateY(-50%) scale(0.96);
+}
+
+/* positioning */
 .prev {
-    left: 10px;
+    left: 18px;
 }
 
 .next {
-    right: 10px;
+    right: 18px;
 }
 
-/* Dots */
-.dots-container {
-    text-align: center;
-    margin-top: 12px;
-}
+/* glow */
+.prev::before,
+.next::before {
+    content: "";
+    position: absolute;
 
-.dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 4px;
-    display: inline-block;
+    width: 140%;
+    height: 140%;
+
     border-radius: 50%;
-    background-color: #bbb;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+
+    background: radial-gradient(circle,
+            rgba(124, 58, 237, 0.35),
+            transparent 70%);
+
+    z-index: -1;
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
+.prev:hover::before,
+.next:hover::before {
+    opacity: 1;
+}
+
+/* DOTS — Premium Style */
+
+.dots-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 0.55rem;
+
+    margin-top: 1.25rem;
+}
+
+/* inactive dots */
+.dot {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 999px;
+
+    background: rgba(100, 116, 139, 0.45);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    cursor: pointer;
+
+    transition:
+        all 0.3s ease,
+        transform 0.25s ease;
+}
+
+/* hover */
+.dot:hover {
+    transform: scale(1.2);
+    background: rgba(91, 33, 182, 0.55);
+}
+
+/* active */
 .dot.active {
-    background-color: var(--primaryIconColor);
+    width: 34px;
+
+    background: linear-gradient(135deg,
+            var(--primaryIconColor),
+            var(--primaryIconColorHover));
+
+    border-color: transparent;
+
+    box-shadow:
+        0 6px 20px rgba(91, 33, 182, 0.35);
+}
+
+/* Mobile Optimization */
+
+@media screen and (max-width: 768px) {
+
+    .prev,
+    .next {
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .dot.active {
+        width: 24px;
+    }
 }
 
 /* Modal */

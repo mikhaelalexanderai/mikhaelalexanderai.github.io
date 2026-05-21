@@ -62,22 +62,96 @@
     <!-- Detail Proyek -->
     <section class="main-container">
         <h2 class="section-title">Project Details</h2>
-        <div class="project-info-grid" style="display:flex; flex-wrap:wrap; gap:2rem;">
-            <div style="flex:1; min-width:250px;">
-                <h4>Project Type</h4>
-                <p>Website</p>
+
+        <div style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    ">
+
+            <div style="
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid #e6eaf2;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: all 0.25s ease;
+        " onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 50px rgba(0,0,0,0.08)'"
+                onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 10px 30px rgba(0,0,0,0.04)'">
+                <h4 style="
+                font-size: 0.85rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: #52607a;
+                margin-bottom: 0.6rem;
+            ">Project Type</h4>
+
+                <p style="
+                font-size: 1rem;
+                color: #0b1220;
+                font-weight: 500;
+            ">Website</p>
             </div>
-            <div style="flex:1; min-width:250px;">
-                <h4>Technology</h4>
-                <p>HTML, CSS</p>
+
+            <div style="
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid #e6eaf2;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: all 0.25s ease;
+        " onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 50px rgba(0,0,0,0.08)'"
+                onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 10px 30px rgba(0,0,0,0.04)'">
+                <h4 style="
+                font-size: 0.85rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: #52607a;
+                margin-bottom: 0.6rem;
+            ">Technology</h4>
+
+                <p style="
+                font-size: 1rem;
+                color: #0b1220;
+                font-weight: 500;
+                line-height: 1.6;
+            ">
+                    HTML + CSS
+                </p>
             </div>
+
         </div>
-        <div class="project-desc" style="margin-top:2rem;">
-            <h4>Description</h4>
-            <p>The Web Based Survey Form App was created to cover HTML and CSS learning, which involves many
+
+        <div style="
+        margin-top: 2.5rem;
+        background: linear-gradient(135deg, #ffffff, #f6f8fc);
+        border: 1px solid #e6eaf2;
+        border-radius: 18px;
+        padding: 2rem;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    ">
+
+            <h4 style="
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #5b21b6;
+            margin-bottom: 1rem;
+        ">Description</h4>
+
+            <p style="
+            color: #52607a;
+            line-height: 1.8;
+            font-size: 1rem;
+        ">
+                The Web Based Survey Form App was created to cover HTML and CSS learning, which involves many
                 tags to create form structures, such as form tags, input tags, etc., and CSS to make the display more
                 attractive. With this project, students immediately understand the tags in HTML and their composition,
-                as well as the important role of CSS.</p>
+                as well as the important role of CSS.
+            </p>
         </div>
     </section>
 
@@ -131,7 +205,7 @@
         });
 
         // Scroll ke atas
-        window.onscroll = function() {
+        window.onscroll = function () {
             scrollFunction();
         };
 
